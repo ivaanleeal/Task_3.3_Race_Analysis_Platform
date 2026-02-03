@@ -6,7 +6,13 @@
 import scrapy
 
 
-class SansilvestrecorunaItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class corredor(scrapy.Item):
+    """Datos del corredor"""
+    puesto = scrapy.Field()
+    dorsal = scrapy.Field()
+    nombre = scrapy.Field()
+    apellido = scrapy.Field()
+    sexo = scrapy.Field()
+    categoría = scrapy.Field()
+    tiempo = scrapy.Field()
+    carrera = scrapy.Field()
