@@ -1,5 +1,5 @@
 import scrapy
-from scrapy_samples.items import corredor
+from sansilvestrecoruna.items import corredor
 
 
 class ResultadosSpider(scrapy.Spider):
