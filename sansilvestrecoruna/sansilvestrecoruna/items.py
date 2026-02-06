@@ -16,3 +16,5 @@ class corredor(scrapy.Item):
     categoría = scrapy.Field()
     tiempo = scrapy.Field()
     carrera = scrapy.Field()
+    distancia = scrapy.Field()
+    ubicacion = scrapy.Field()

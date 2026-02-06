@@ -89,13 +89,4 @@ FEED_EXPORT_ENCODING = "utf-8"
 USER_AGENT= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 ROBOTSTXT_OBEY= False # Ignorar el archivo robots.txt si prohíbe el paso
 
-FEED_EXPORT_FIELDS= [
-            'puesto', 
-            'dorsal', 
-            'nombre', 
-            'apellido', 
-            'sexo', 
-            'categoría', 
-            'tiempo', 
-            'carrera'
-        ]
+FEED_EXPORT_FIELDS= ['puesto', 'dorsal', 'nombre', 'apellido', 'sexo', 'categoría', 'tiempo', 'distancia', 'ubicacion', 'carrera']
