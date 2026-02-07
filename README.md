@@ -1,5 +1,36 @@
 # Task_3.3_Race_Analysis_Platform
 
+
+## 1. Web Scraping with Scrapy
+
+
+### **Valores añadidos en settings:**
+
+**USER_AGENT**= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+
+- **Ignora el archivo robots.txt si prohíbe paso.**
+  
+	**ROBOTSTXT_OBEY**= False 
+
+- **Especifica en que orden saldrán los datos en el CSV.**
+  
+	**FEED_EXPORT_FIELDS** = ['puesto', 'dorsal', 'nombre', 'apellido', 'sexo', 'categoría', 'tiempo', 'distancia', 'carrera', 'ubicacion']
+
+- **Obliga a procesar una sola URL a la vez.**
+  
+	**CONCURRENT_REQUESTS** = 1
+
+- **Un pequeño respiro para no saturar.**
+  
+	**DOWNLOAD_DELAY** = 0.2
+
+- **El número 300 indica el orden de ejecución (puedes tener varios)**
+  
+	**ITEM_PIPELINES** = {'sansilvestrecoruna.pipelines.SanSilvestreLimpiezaPipeline': 300,}
+  
+---
+
+## 2. Data Storage
 ## Objetivo
 
 Guardar los datos scrapeados en JSON y cargarlos en una base de datos relacional (MariaDB).
