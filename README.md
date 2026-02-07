@@ -17,10 +17,10 @@ Framework de web scraping empleado para la extracción de datos desde la web.
 - **Conexión a Internet :**
 Necesaria para acceder a la web https://sansilvestrecoruna.com/
 
-Instalar Scrapy:
+Instalar dependencias:
 
 ```python
-pip install scrapy
+pip install -r requirements.txt
 ```
 
 ### Valores añadidos en `pipelines`
