@@ -1,13 +1,18 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
-
-# useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+from scrapy.exceptions import DropItem
 
-
-class SansilvestrecorunaPipeline:
+class SanSilvestreLimpiezaPipeline:
     def process_item(self, item, spider):
+        adapter = ItemAdapter(item)
+
+        # 1. Limpieza de nombres y apellidos (Poner en mayúsculas y quitar espacios extra)
+        for campo in ['nombre', 'apellido']:
+            valor = adapter.get(campo)
+            if valor:
+                adapter[campo] = valor.strip().upper()
+
+        # 2. Validación: Si el corredor no tiene nombre, lo descartamos
+        if not adapter.get('nombre'):
+            raise DropItem(f"Corredor sin nombre encontrado en puesto {adapter.get('puesto')}")
+
         return item

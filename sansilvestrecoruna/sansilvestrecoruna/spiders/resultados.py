@@ -5,7 +5,6 @@ class ResultadosSpider(scrapy.Spider):
     name = "resultados"
     allowed_domains = ["sansilvestrecoruna.com"]
 
-    # Diccionario de años
     MAPA_ANOS = {
         "16683": 2025,
         "15442": 2024,
@@ -21,13 +20,6 @@ class ResultadosSpider(scrapy.Spider):
         "-836":  2012,
         "-603":  2011,
         "-435":  2010,
-    }
-
-    custom_settings = {
-        'CONCURRENT_REQUESTS': 1, # Obliga a procesar una sola URL a la vez
-        'DOWNLOAD_DELAY': 0.2,    # Un pequeño respiro para no saturar
-        'FEED_EXPORT_FIELDS': ['puesto', 'dorsal', 'nombre', 'apellido', 'sexo', 'categoría', 'tiempo', 'distancia', 'carrera', 'ubicacion'],
-        'FEED_EXPORT_ENCODING': 'utf-8-sig',
     }
 
     def start_requests(self):
