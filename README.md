@@ -1,5 +1,13 @@
 # Task 3.3 – Race Analysis Platform
 
+## Estructura del proyecto
+
+- `scrapy_project/` - Proyecto Scrapy (spiders y configuracion)
+- `database/` - Esquema SQL y scripts de carga
+- `analysis/` - Notebooks de analisis
+- `dashboard/` - Aplicacion Streamlit
+- `data/` - JSON de muestra (evitar subir datasets grandes)
+
 ## 1. Web Scraping con Scrapy
 
 ## Objetivo
@@ -114,7 +122,7 @@ docker run --name race-mariadb -e MARIADB_ROOT_PASSWORD=secret \
 2. Crear las tablas:
 
 ```python
-docker exec -i race-mariadb mariadb -uroot -psecret race_results < sql/schema_mariadb.sql
+docker exec -i race-mariadb mariadb -uroot -psecret race_results < database/sql/schema_mariadb.sql
 ```
 
 ## Crear MariaDB (instalacion local)
@@ -124,13 +132,13 @@ docker exec -i race-mariadb mariadb -uroot -psecret race_results < sql/schema_ma
 3. Ejecutar el schema:
 
 ```python
-mariadb -u root -p race_results < sql/schema_mariadb.sql
+mariadb -u root -p race_results < database/sql/schema_mariadb.sql
 ```
 
 ## Generar JSON desde el CSV actual
 
 ```python
-python scripts/export_csv_to_json.py --input sansilvestrecoruna/sansilvestrecoruna/salidas.csv --output data/salidas.json
+python database/scripts/export_csv_to_json.py --input scrapy_project/sansilvestrecoruna/sansilvestrecoruna/salidas.csv --output data/salidas.json
 ```
 
 ## Cargar JSON a MariaDB
@@ -148,13 +156,14 @@ $env:DB_NAME="race_results"
 Luego ejecuta la carga:
 
 ```python
-python scripts/import_json_to_mariadb.py --input data/salidas.json
+python database/scripts/import_json_to_mariadb.py --input data/salidas.json
 ```
 
 ## Entregables
 
 - JSON con los datos: `data/salidas.json`
-- Esquema SQL: `sql/schema_mariadb.sql`
+- JSON de muestra: `data/sample_salidas.json`
+- Esquema SQL: `database/sql/schema_mariadb.sql`
 - ERD: `docs/erd.md`
 - Base de datos poblada con los resultados
 
@@ -190,7 +199,7 @@ Aplicacion interactiva con Streamlit para explorar carreras y corredores.
 ### Ejecutar la app
 
 ```python
-streamlit run streamlit_app.py
+streamlit run dashboard/streamlit_app.py
 ```
 
 ### Funcionalidades

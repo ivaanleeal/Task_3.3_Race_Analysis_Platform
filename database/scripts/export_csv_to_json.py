@@ -42,7 +42,7 @@ def parse_args():
     )
     parser.add_argument(
         "--input",
-        default="sansilvestrecoruna/sansilvestrecoruna/salidas.csv",
+        default="scrapy_project/sansilvestrecoruna/sansilvestrecoruna/salidas.csv",
         help="Ruta al CSV de entrada.",
     )
     parser.add_argument(
