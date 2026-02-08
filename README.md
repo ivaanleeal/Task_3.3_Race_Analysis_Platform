@@ -12,10 +12,10 @@ mediante el uso de `Scrapy`, para posteriormente generar un archivo CSV que alma
 - **Python 3.10+**
 
 - **Scrapy :**
-Framework de web scraping empleado para la extracción de datos desde la web.
+  Framework de web scraping empleado para la extracción de datos desde la web.
 
 - **Conexión a Internet :**
-Necesaria para acceder a la web https://sansilvestrecoruna.com/
+  Necesaria para acceder a la web https://sansilvestrecoruna.com/
 
 Instalar dependencias:
 
@@ -35,42 +35,41 @@ pip install -r requirements.txt
 - **USER_AGENT**  
   Identifica el scraper como un navegador real (Chrome/Firefox) para evitar bloqueos por detección de bots.
 
- ```python
-  USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+```python
+ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 ```
 
 - **ROBOTSTXT_OBEY**
 
   Ignora las restricciones del archivo robots.txt.
 
- ```python
-  ROBOTSTXT_OBEY = False
+```python
+ ROBOTSTXT_OBEY = False
 ```
 
 - **FEED_EXPORT_FIELDS**
   Define el orden de los campos en el archivo CSV generado.
 
- ```python
-  FEED_EXPORT_FIELDS = [
-    'puesto', 'dorsal', 'nombre', 'apellido', 'sexo',
-    'categoría', 'tiempo', 'distancia', 'carrera', 'ubicacion'
+```python
+ FEED_EXPORT_FIELDS = [
+   'puesto', 'dorsal', 'nombre', 'apellido', 'sexo',
+   'categoría', 'tiempo', 'distancia', 'carrera', 'ubicacion'
 ]
 ```
 
 - **CONCURRENT_REQUESTS**
-  
+
   Fuerza el procesamiento de una sola URL simultáneamente.
 
- ```python
+```python
 CONCURRENT_REQUESTS = 1
 ```
-
 
 - **DOWNLOAD_DELAY**
 
   Añade un pequeño retardo entre peticiones para evitar sobrecargar el servidor.
 
- ```python
+```python
 DOWNLOAD_DELAY = 0.2
 ```
 
@@ -78,15 +77,16 @@ DOWNLOAD_DELAY = 0.2
 
   Define el orden de ejecución del pipeline (se pueden usar varios).
 
- ```python
+```python
 ITEM_PIPELINES = {
-    'sansilvestrecoruna.pipelines.SanSilvestreLimpiezaPipeline': 300,
+   'sansilvestrecoruna.pipelines.SanSilvestreLimpiezaPipeline': 300,
 }
 ```
-  
+
 ---
 
 ## 2. Data Storage
+
 ## Objetivo
 
 Guardar los datos scrapeados en JSON y cargarlos en una base de datos relacional (MariaDB).
@@ -157,3 +157,45 @@ python scripts/import_json_to_mariadb.py --input data/salidas.json
 - Esquema SQL: `sql/schema_mariadb.sql`
 - ERD: `docs/erd.md`
 - Base de datos poblada con los resultados
+
+---
+
+## 3. Data Analytics (Analysis)
+
+Analisis exploratorio y estadistico en notebook.
+
+### Ejecutar el analisis
+
+Abrir el notebook y ejecutar las celdas en orden:
+
+- `analysis/Analysis.ipynb`
+
+### Contenidos
+
+- Metricas por grupo de edad y genero.
+- Tendencias de participacion y tiempos (media/mediana/min/max).
+- Top performers por promedio.
+- Informe narrativo de hallazgos.
+
+### Salidas
+
+Al ejecutar el notebook se generan CSV con tablas resumen en `analysis/output/`.
+
+---
+
+## 4. Data Presentation (Dashboard)
+
+Aplicacion interactiva con Streamlit para explorar carreras y corredores.
+
+### Ejecutar la app
+
+```python
+streamlit run streamlit_app.py
+```
+
+### Funcionalidades
+
+- Vista de carreras con filtros por genero y grupo de edad.
+- Histograma de tiempos y estadisticas (min, max, media, mediana).
+- Vista de corredor con historial de carreras, ritmo y posicion.
+- Comparacion del corredor con la distribucion de tiempos de su carrera.

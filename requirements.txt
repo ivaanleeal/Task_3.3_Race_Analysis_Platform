@@ -1,2 +1,5 @@
 pymysql==1.1.1
 scrapy
+streamlit
+pandas
+plotly
