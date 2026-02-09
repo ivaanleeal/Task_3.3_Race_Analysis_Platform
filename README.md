@@ -99,6 +99,17 @@ ITEM_PIPELINES = {
 
 Guardar los datos scrapeados en JSON y cargarlos en una base de datos relacional (MariaDB).
 
+
+## Diagramas BD
+
+### 📂 Ubicación Diagramas
+
+```text
+Task_3.3_Race_Analysis_Platform/
+├── database/
+	└── docs/ 
+```
+
 ## Requisitos
 
 - Python 3.10+
